@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transactions</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #4e73df, #1cc88a);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .transaction-card {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .transaction-card:hover {
+      transform: scale(1.02);
+    }
+
+    .transaction-type {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffc107;
+    }
+
+    .transaction-details {
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    .btn-back {
+      margin-top: 20px;
+      color: #fff;
+      background-color: #28a745;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .btn-back:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container pt-5">
+    <%- include('partials/navigationBar') %>
+    
+    <% if (transactions && transactions.length > 0) { %>
+      <% transactions.forEach(transaction => { %>
+        <div class="transaction-card">
+          <div class="transaction-type">
+            Transaction Type: <%= transaction.type %>
+          </div>
+          <div class="transaction-details">
+            <p><strong>Date:</strong> <%= new Date(transaction.date).toLocaleDateString() %></p>
+            <p><strong>Price:</strong> $<%= Number(transaction.price).toLocaleString() %></p>
+            <p><strong>User:</strong> <%= transaction.username %></p>
+            <p><strong>Agent:</strong> <%= transaction.agentUsername %></p>
+            <p><strong>Property:</strong> <%= transaction.propertyName %></p>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="alert alert-warning text-center">
+        No transactions available to display.
+      </div>
+    <% } %>
+
+    <div class="text-center">
+      <a href="/welcome" class="btn-back">Go Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

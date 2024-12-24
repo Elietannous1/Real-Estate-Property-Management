@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>500 - Internal Server Error</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+     body {
+        background: url('/image500-2.jpeg') no-repeat center center fixed;
+        background-size: 40%; 
+        background-position: center;  /* Align the image to the left and center vertically */
+        background-attachment: fixed;  /* Keeps the image fixed when scrolling */
+        color: #fff;
+        font-family: 'Arial', sans-serif;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .error-container {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 15px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        max-width: 600px;
+      }
+
+      .error-code {
+        font-size: 6rem;
+        font-weight: bold;
+        color: #ff4c4c;
+        margin-bottom: 10px;
+      }
+
+      .error-message {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      .real-estate-tip {
+        font-size: 1.2rem;
+        color: #ffc107;
+        margin-bottom: 30px;
+      }
+
+      .btn-back {
+        color: #fff;
+        background-color: #28a745;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        text-decoration: none;
+      }
+
+      .btn-back:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <div class="error-code">500</div>
+      <div class="error-message">Something went wrong on our end!</div>
+      <div class="real-estate-tip">
+        While we fix this, why not check out our featured listings later? 🏡
+      </div>
+      <a href="/" class="btn-back">Go Back to Home</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Property - Real Estate Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        background: linear-gradient(to right, #DDDBDE, #CAD4DF);
+        font-family: 'Arial', sans-serif;
+        color: #333;
+      }
+      .form-container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 50px auto;
+        max-width: 600px;
+      }
+      h1 {
+        color: #4e73df;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .btn-primary {
+        background-color: #4e73df;
+        border: none;
+      }
+      .btn-primary:hover {
+        background-color: #375a7f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container my-5">
+      <div class="form-container">
+        <h1>Edit Property</h1>
+        <form action="/property/update/<%= property.id %>" method="POST">
+          <!-- Property Name -->
+          <div class="mb-3">
+            <label for="propertyName" class="form-label">Property Name</label>
+            <input type="text" class="form-control" id="propertyName" name="propertyName" value="<%= property.propertyName %>" required>
+          </div>
+
+          <!-- Property Location -->
+          <div class="mb-3">
+            <label for="propertyLocation" class="form-label">Location</label>
+            <input type="text" class="form-control" id="propertyLocation" name="propertyLocation" value="<%= property.propertyLocation %>" required>
+          </div>
+
+          <!-- Property Price -->
+          <div class="mb-3">
+            <label for="propertyPrice" class="form-label">Price</label>
+            <input type="number" class="form-control" id="propertyPrice" name="propertyPrice" value="<%= property.propertyPrice %>" required>
+          </div>
+
+          <!-- Bedrooms -->
+          <div class="mb-3">
+            <label for="bedroom" class="form-label">Bedrooms</label>
+            <input type="number" class="form-control" id="bedroom" name="bedroom" value="<%= property.bedroom %>" required>
+          </div>
+
+          <!-- Bathrooms -->
+          <div class="mb-3">
+            <label for="bathroom" class="form-label">Bathrooms</label>
+            <input type="number" class="form-control" id="bathroom" name="bathroom" value="<%= property.bathroom %>" required>
+          </div>
+
+          <!-- Garden -->
+          <div class="mb-3">
+            <label for="garden" class="form-label">Garden</label>
+            <select class="form-select" id="garden" name="garden" required>
+              <option value="1" <%= property.garden === 1 ? 'selected' : '' %>>Yes</option>
+              <option value="0" <%= property.garden === 0 ? 'selected' : '' %>>No</option>
+            </select>
+          </div>
+
+          <!-- Garden Area -->
+          <div class="mb-3">
+            <label for="gardenArea" class="form-label">Garden Area (sq. ft.)</label>
+            <input type="number" class="form-control" id="gardenArea" name="gardenArea" value="<%= property.gardenArea || '' %>">
+          </div>
+
+          <!-- Property Status -->
+          <div class="mb-3">
+            <label for="propertyStatus" class="form-label">Status</label>
+            <select class="form-select" id="propertyStatus" name="propertyStatus" required>
+              <% const validStatuses = [
+                'Available',
+                'Pending',
+                'Under Contract',
+                'Sold',
+                'Rented',
+                'Reserved',
+                'Off Market',
+                'Expired',
+                'Inactive',
+                'Archived'
+              ]; %>
+              <% validStatuses.forEach(status => { %>
+                <option value="<%= status %>" <%= property.propertyStatus === status ? 'selected' : '' %>><%= status %></option>
+              <% }); %>
+            </select>
+          </div>
+
+          <!-- Agent ID -->
+          <div class="mb-3">
+            <label for="agentId" class="form-label">Agent</label>
+            <select class="form-select" id="agentId" name="agentId" required>
+              <% agents.forEach(agent => { %>
+                <option value="<%= agent.id %>" <%= property.agentId === agent.id ? 'selected' : '' %>><%= agent.name %></option>
+              <% }); %>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary w-100">Update Property</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

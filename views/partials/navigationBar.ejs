@@ -1,0 +1,45 @@
+<style>
+  .navbar {
+    background: linear-gradient(to right, #3a61c8, #149f73); /* Darker variant */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+    width: 100%; /* Ensures full-width */
+  }
+
+  .navbar a.nav-link {
+    color: white !important; /* Ensures the text color is white */
+    transition: color 0.3s ease; /* Smooth transition for hover effects */
+  }
+
+  .navbar a.nav-link:hover {
+    color: #d1d1d1 !important; /* Slightly lighter shade for hover */
+  }
+
+  body {
+    padding-top: 70px; /* Prevents content from overlapping the fixed navbar */
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/property/filter" style="color: white;">Properties</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="/transaction">Transactions</a>
+        <a class="nav-link" href="/payment">Payments</a>
+        <a class="nav-link" href="/appointment">Appointments</a>
+        <a class="nav-link" href="/favorites">Favorites</a>
+      </div>
+    </div>
+  </div>
+</nav>

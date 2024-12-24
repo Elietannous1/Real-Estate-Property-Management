@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome Back</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        background: linear-gradient(to right, #4e73df, #1cc88a);
+        color: #fff;
+        font-family: 'Arial', sans-serif;
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .welcome-container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        width: 400px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      }
+      .btn-custom {
+        background-color: #1cc88a;
+        color: #fff;
+        margin: 10px 0;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        width: 100%;
+      }
+      .btn-custom:hover {
+        background-color: #17a673;
+        color: #fff;
+      }
+      .btn-custom:active {
+        transform: scale(0.98);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="welcome-container">
+      <h1>Welcome Back, <%= user.name %>!</h1>
+      <p class="mb-4">What would you like to do today?</p>
+      <a href="/user/profile/<%= user.id %>" class="btn btn-custom">Check Profile</a>
+      <a href="/property/filter" class="btn btn-custom">View My Properties</a>
+      <a href="/transaction/" class="btn btn-custom">Check Transactions</a>
+      <a href="/payment/" class="btn btn-custom">Manage Payments</a>
+      <a href="/appointment/" class="btn btn-custom">View Appointments</a>
+      <a href="/message" class="btn btn-custom">Check Messages</a>
+      <a href="/favorites" class="btn btn-custom">Check favorites</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Properties - Real Estate Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        background: linear-gradient(to right, #4e73df, #1cc88a);
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        padding-bottom: 30px;
+      }
+      .property-card {
+        background: #ffffff; /* Changed background to white for clarity */
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        overflow: hidden;
+      }
+      .property-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .property-card .card-body {
+        padding: 20px;
+        color: #333; /* Standard text color */
+      }
+      .property-card .property-name {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #4e73df; /* Accent color */
+      }
+      .property-card .property-location {
+        font-size: 1.2rem;
+        color: #6c757d; /* Neutral gray */
+        margin-bottom: 10px;
+      }
+      .property-card .property-price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #1cc88a; /* Highlighted price color */
+        margin-bottom: 15px;
+      }
+      .property-card .property-details {
+        font-size: 1rem;
+        color: #555; /* Subdued gray for details */
+        margin-bottom: 10px;
+      }
+      .property-card .property-status {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #f0ad4e; /* Gold for status */
+      }
+      .btn-view-details, .btn-edit, .btn-delete {
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+      .btn-view-details {
+        background-color: #007bff; /* Blue for view details */
+      }
+      .btn-view-details:hover {
+        background-color: #0056b3;
+      }
+      .btn-edit {
+        background-color: #ffc107; /* Yellow for edit */
+      }
+      .btn-edit:hover {
+        background-color: #e0a800;
+      }
+      .btn-delete {
+        background-color: #dc3545; /* Red for delete */
+      }
+      .btn-delete:hover {
+        background-color: #bd2130;
+      }
+      h1 {
+        color: #ffffff; /* White title for contrast */
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+      .container {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <%- include('partials/navigationBar') %>
+
+      <h1 class="">Available Properties</h1>
+
+      <% success.forEach(property => { %>
+        <div class="property-card">
+          <!-- Property Image -->
+          <img src="/images/property-default.jpg" alt="<%= property.propertyName %>">
+
+          <div class="card-body">
+            <!-- Property Name -->
+            <div class="property-name"><%= property.propertyName %></div>
+            
+            <!-- Property Location -->
+            <div class="property-location"><%= property.propertyLocation %></div>
+
+            <!-- Property Price -->
+            <div class="property-price">$<%= property.propertyPrice.toLocaleString() %></div>
+
+            <!-- Property Details -->
+            <div class="property-details">
+              <strong>Bedrooms:</strong> <%= property.bedroom || 'N/A' %> |
+              <strong>Bathrooms:</strong> <%= property.bathroom || 'N/A' %> |
+              <strong>Garden:</strong> <%= property.garden ? 'Yes' : 'No' %> |
+              <strong>Garden Area:</strong> <%= property.gardenArea || 'N/A' %> sq. ft.
+            </div>
+
+            <!-- Property Status -->
+            <div class="property-status">
+              Status: <%= property.propertyStatus %>
+            </div>
+
+            <!-- Buttons for actions -->
+            <div class="d-flex justify-content-between mt-3">
+              
+              <!-- Edit Button -->
+              <a href="/property/edit-form/<%= property.propertyId %>" class="btn-edit">Edit</a>
+              
+              <!-- Delete Button -->
+              <button class="btn-delete" onclick="confirmDelete(<%= property.propertyId %>)">Delete</button>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <script>
+      function confirmDelete(propertyId) {
+        const isConfirmed = confirm("Are you sure you want to delete this property?");
+        if (isConfirmed) {
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = `/property/delete/${propertyId}`;
+          document.body.appendChild(form);
+          form.submit();
+        }
+      }
+    </script>
+  </body>
+</html>
